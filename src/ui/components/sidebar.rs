@@ -248,12 +248,6 @@ fn create_nav_item(item: &SidebarItem, state: &SidebarState, count: Option<i64>)
         Style::default().fg(Theme::FG)
     };
 
-    let shortcut_style = if is_selected {
-        Theme::selected_style()
-    } else {
-        Theme::muted_style()
-    };
-
     let mut spans = vec![
         Span::raw(" "),
         Span::styled(item.icon(), style),
@@ -261,19 +255,24 @@ fn create_nav_item(item: &SidebarItem, state: &SidebarState, count: Option<i64>)
         Span::styled(item.label(), style),
     ];
 
-    // Add count if available
+    // Add count if available (in parentheses)
     if let Some(c) = count {
         if c > 0 {
             spans.push(Span::styled(
-                format!(" {}", c),
+                format!(" ({})", c),
                 Style::default().fg(Theme::FG_DIM),
             ));
         }
     }
 
-    // Add shortcut hint
+    // Add shortcut hint in brackets with distinct style
+    let shortcut_style = if is_selected {
+        Style::default().fg(Theme::SELECTION_FG).add_modifier(Modifier::DIM)
+    } else {
+        Style::default().fg(Theme::PRIMARY)
+    };
     spans.push(Span::styled(
-        format!(" {}", item.shortcut()),
+        format!(" [{}]", item.shortcut()),
         shortcut_style,
     ));
 
