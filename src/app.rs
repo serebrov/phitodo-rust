@@ -392,6 +392,18 @@ impl App {
         }
     }
 
+    pub fn open_task_url(&mut self) {
+        if let Some(task) = self.selected_task() {
+            if let Some(ref url) = task.context_url {
+                if let Err(e) = open::that(url) {
+                    self.show_error(format!("Failed to open URL: {}", e));
+                }
+            } else {
+                self.show_error("No URL for this task".to_string());
+            }
+        }
+    }
+
     pub fn start_new_task(&mut self) {
         self.task_form = Some(TaskFormState::new_task(self.projects.clone()));
         self.mode = AppMode::TaskForm;

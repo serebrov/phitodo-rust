@@ -36,6 +36,7 @@ dirs = "5"
 anyhow = "1"
 thiserror = "1"
 base64 = "0.21"
+open = "5"
 
 # Pin older versions for rust 1.74 compat
 indexmap = "=2.1.0"

@@ -91,6 +91,7 @@ fn handle_normal_mode(app: &mut App, key: KeyEvent) {
         KeyCode::Char('N') => app.start_new_project(),
         KeyCode::Char('e') => app.start_edit_task(),
         KeyCode::Char('d') => app.start_delete(),
+        KeyCode::Char('o') => app.open_task_url(),
 
         // Status shortcuts
         KeyCode::Char('i') => app.set_task_status(TaskStatus::Inbox),
