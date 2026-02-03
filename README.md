@@ -5,6 +5,8 @@ A terminal UI clone of phitodo task management, built with Rust using ratatui.
 A port of https://github.com/pichichi91/phitodo to TUI/rust app.
 Ported by Claude Code.
 
+![Screenshot](screenshot.png)
+
 ## Features
 
 - Full task management (create, edit, complete, delete)
